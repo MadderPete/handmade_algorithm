@@ -1,1 +1,95 @@
+class Node():
+    def __init__(self,elem=-1,left=None,right=None):
+        self.elem=elem
+        self.left=left
+        self.right=right
 
+class Tree():
+    def __init__(self):
+        self.root= Node()
+        self.Myquery=[]
+    def add(self,elem):
+        node=Node(elem)
+        if self.root.elem==-1:
+            self.root=node
+            self.Myquery.append(node)
+        else:
+            ori=self.Myquery[0]
+            if ori.left==None:
+                ori.left=node
+                self.Myquery.append(node)
+            else:
+                ori.right=node
+                self.Myquery.append(node)
+                self.Myquery.pop(0)
+    def front_digui(self, root):
+        """利用递归实现树的先序遍历"""
+        if root == None:
+            return
+        print(root.elem)
+        self.front_digui(root.left)
+        self.front_digui(root.right)
+    def mid_digui(self,root):
+        if root==None:
+            return
+        self.mid_digui(root.left)
+        print(root.elem)
+        self.mid_digui(root.right)
+    def back_digui(self,root):
+        if root==None:
+            return
+        self.back_digui(root.left)
+        self.back_digui(root.right)
+        print(root.elem)
+    
+    def d_front_digui(self,root):
+        if root == None:
+            return
+        Query=[]
+        while root or Query:
+            while root:
+                print(root.elem)
+                Query.append(root)
+                root=root.left
+            root=Query.pop()
+            root=root.right
+    
+    def d_mid_digui(self,root):
+        if root == None:
+            return
+        Query=[]
+        while root or Query:
+            while root:
+                Query.append(root)
+                root=root.left
+            root=Query.pop()
+            print(root.elem)
+            root=root.right
+            
+    def d_back_digui(self,root):
+        if root == None:
+            return
+        Query1=[]
+        Query2=[]
+        while root or Query1:
+            while root:
+                Query2.append(root.elem)
+                Query1.append(root)
+                root=root.right
+            root=Query1.pop()
+            root=root.left
+        print(Query2)
+            
+
+a=[1,2,3,4,5,6]
+tree = Tree()
+for i in a:
+    tree.add(i)
+print('iteration')
+tree.front_digui(tree.root)
+tree.mid_digui(tree.root)
+tree.back_digui(tree.root)
+print('dui zhan')
+tree.d_front_digui(tree.root)
+tree.d_mid_digui(tree.root)
+tree.d_back_digui(tree.root)
